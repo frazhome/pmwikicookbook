@@ -1,19 +1,32 @@
-<?php   
-$RecipeInfo['mermaid']['Version'] = '20201214';
+<?php if (!defined('PmWiki')) exit();
+
+/*
+ * Enable the use of mermaid graphing solution https://mermaid-js.github.io/mermaid/#/
+ *
+ * This program is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software
+ * Foundation; either version 3 of the License, or (at your
+ * option) any later version. Available at
+ * https://www.gnu.org/licenses/gpl.txt
+ *
+ * Copyright 2020 franz pfoertsch (franz.pfoertsch@gmail.com)
+ * Version 20201215
+ */
+
+$RecipeInfo['mermaid']['Version'] = '20201215';
+
+//---------------- Global Configuration Variables ----------------
+global $PubDirUrl;
+global $MermaidSrvUrl;
+SDV($MermaidSrvUrl, "https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js");
+
    Markup(
    'mermaid',
    'fulltext',
    '/\\(:mermaid:\\)(.*?)\\(:mermaidend:\\)/msi',
    "mermaid"
    );
-
-// Security check.
-if (!defined('PmWiki')) exit();
-
-//---------------- Global Configuration Variables ----------------
-global $PubDirUrl;
-global $MermaidSrvUrl;
-SDV($MermaidSrvUrl, "https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js");
 
 function mermaid ($m) {
   global $HTMLHeaderFmt;
@@ -26,3 +39,4 @@ function mermaid ($m) {
    return Keep($output);
 };
 ?>
+
